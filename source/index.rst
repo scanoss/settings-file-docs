@@ -29,30 +29,53 @@ The format of the "scanoss.json" file goes like this:
 
 .. code-block:: json
 
-      {
-   "bom": {
-      "include": [
-         {
-         "purl": "pkg:github/kingventrix007/kickstart"
-         },
-         {
-         "purl": "pkg:github/zephyrproject-rtos/zephyr-testing"
-         }
-      ]
-   }
-   }
-
-Now after triggering the action again, we will see that the components previously detected as undeclared will not appear as undeclared anymore.
-
-This is just an example on how someone can benefit from the use of this feature, but there are multiple use cases for using the SCANOSS Settings file (for example, to avoid false positive matches).
+    {
+        "bom": {
+            "exclude": [
+                {
+                    "purl": "pkg:github/kingventrix007/kickstart"
+                },
+                {
+                    "purl": "pkg:github/zephyrproject-rtos/zephyr-testing"
+                }
+            ]
+        }
+    }
 
 
-How to implement the settings file in SCANOSS clients and services
-==================================================================
+After you trigger the action again with this configuration in place, the previously detected components will no longer appear as undeclared in your results.
 
-To implement the use of the settings file, you may need to follow specific instructions for each client/service.
+While this example demonstrates excluding components from scan results, the SCANOSS Settings file supports various other use cases, such as:
+- Preventing false positive matches
+- Customizing scanning behavior for specific components
+- Managing component detection rules across your project
 
-Regarding the clients (e.g. scanoss-py), you can follow the example file creation from this documentation and then use dedicated parameter for this feature (for scanoss-py, that would be *-identify <SCANOSS Setting file path>*). Make sure to check out our `official documentation page <docs.scanoss.com>`_ as well as our `GitHub Organization page <https://github.com/scanoss>`_ for more information.
 
-When it comes to integrations, there is `available documentation <https://scanoss.readthedocs.io/projects/integration-docs/en/latest/>`_  on how to configure and enable the feature.
 
+SCANOSS Settings Rules
+=====================
+
+The SCANOSS settings file provides two types of rules: Result Manipulation Rules that work on scan results, and Scanning Rules that are sent to the scanning engine.
+
+
+Result Manipulation Rules
+-----------------------
+
+These rules are applied after scanning to modify the results:
+
+:doc:`Remove <rule_remove>`
+    Remove specific components or files from scan results based on various criteria.
+
+:doc:`Replace <rule_replace>`
+    Replace identified components with alternative component definitions.
+
+Scanning Engine Rules
+-------------------
+
+These rules are sent to the scanning engine to control the scanning process:
+
+:doc:`Include <rule_include>`
+    Define components to be included in the scanning process.
+
+:doc:`Exclude <rule_exclude>`
+    Define components to be excluded from the scanning process.

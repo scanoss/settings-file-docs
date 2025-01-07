@@ -26,3 +26,9 @@ exclude_patterns = []
 html_theme = 'furo'
 html_logo = 'SCANOSSDocsLogo.jpg'
 html_static_path = ['_static']
+
+html_theme_options = {
+    'body_max_width': 'none',
+    # 'sidebarwidth': '20%',  # Make sidebar relative
+    # 'documentwidth': '80%'  # Make main content relative
+}

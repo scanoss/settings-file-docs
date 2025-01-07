@@ -1,0 +1,12 @@
+{
+  "bom": {
+    "remove": [
+      {
+        "path": "build/CMake.cpp"
+      },
+      {
+        "path": "sdk/include/api/grpc.h"
+      }
+    ]
+  }
+}
