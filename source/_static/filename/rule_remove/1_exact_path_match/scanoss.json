@@ -2,10 +2,7 @@
   "bom": {
     "remove": [
       {
-        "path": "build/CMake.cpp"
-      },
-      {
-        "path": "sdk/include/api/grpc.h"
+        "path": "src/crc32c.c"
       }
     ]
   }

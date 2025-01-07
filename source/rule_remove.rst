@@ -12,9 +12,6 @@ Rule Properties
 - **start_line:** Filter by starting line number (number, only available in scanoss.java)
 - **end_line:** Filter by ending line number (number, only available in scanoss.java)
 
-.. note::
- Files with match type 'none' are always kept in the results, regardless of the filter settings. This is a global behavior that applies to all remove rules.
-
 
 -------------------
 
@@ -43,11 +40,14 @@ Special Cases
 -------------
 
 
-1. Exact Path Match
+1. Example Exact Path Match
 ~~~~~~~~~~~~~~~~~~~
 
 This filter type performs a case-sensitive comparison between the specified path and the file paths in the scan results.
-The filter applies regardless of whether the match type is 'file' or 'snippet'.
+The filter applies regardless of whether the match type is 'file', 'snippet' or 'none'.
+
+.. warning::
+ Do we actually want to remove the key from the result? Or would be better to replace the component for a match type none?
 
 **Settings** :download:`📥 <_static/filename/rule_remove/1_exact_path_match/scanoss.json>`
 
@@ -67,17 +67,21 @@ The filter applies regardless of whether the match type is 'file' or 'snippet'.
 .. literalinclude:: _static/filename/rule_remove/1_exact_path_match/expected.json
    :language: json
    :linenos:
-   :emphasize-lines: 3-12
 
-**Note:** The file sdk/include/api/grpc.h is kept because does not have a match #TODO
+
+.. warning::
+ TBD: Do the file needs to be removed completly? Or we can assign a non match id?
+
+
 
 -------------------------------
 
-2. StartsWith Path Match
+2. Example StartsWith Path Match
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This filter removes files where the path starts with the specified string.
-This is similar to a directory match but more flexible as it can match any path prefix, not just complete directory names.
+The path rules have an implicit startsWith behavior - meaning they will match any path that begins with the specified pattern.
+
 
 **Settings** :download:`📥 <_static/filename/rule_remove/2_starts_with_path_match/scanoss.json>`
 
@@ -98,23 +102,11 @@ This is similar to a directory match but more flexible as it can match any path 
    :language: json
    :linenos:
 
-Key Behaviors:
-^^^^^^^^^^^^^
 
-StartsWith Matching:
-* Matches any file path that starts with "src/test"
-* Removes "src/test/helper.cpp" and "src/test_main.cpp"
-*Does NOT remove "src/testing/mock.cpp" (different path)
-*Does NOT remove "src/test-config.h" (has id: "none")
+.. warning::
+    The implicit startsWith behavior in path matching can potentially remove more files than intended.
+    For example, a path pattern of "test" would match both "test/file.js" AND "test_utils/file.js".
+    Another case will be the path pattern "main.c" and will remove the file main.cpp.
+    A system like .gitignore should be considered
 
 
-**Case Sensitivity:**
-The matching is case-sensitive "src/test" would not match "src/TEST/file.cpp"
-
-
-**Partial Path Matching**
-Matches both directory and file paths "src/test" matches both "src/test/helper.cpp" (directory) and "src/test_main.cpp" (filename starting with test)
-
-
-**Non-Match Preservation**
-Files with "id": "none" are preserved even if their paths match
