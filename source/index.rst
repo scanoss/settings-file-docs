@@ -1,14 +1,13 @@
-SCANOSS Settings Documentation
+SCANOSS Settings Documentation (This is a new text)
 ==============================
 
 
-This documentation will help you better understand the concept of the SCANOSS Settings file, as well as how to implement it when using SCANOSS clients and services.
 
 .. note::
    This feature is available for all SCANOSS clients and integrations.
 
 
-What is the SCANOSS Settings file?
+Changed line
 ==================================
 
 
