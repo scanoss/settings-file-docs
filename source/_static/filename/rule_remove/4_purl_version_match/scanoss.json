@@ -1,0 +1,9 @@
+{
+  "bom": {
+    "remove": [
+      {
+        "purl": "pkg:npm/lodash@4.17.21"
+      }
+    ]
+  }
+}

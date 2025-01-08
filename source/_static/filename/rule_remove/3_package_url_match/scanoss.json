@@ -1,0 +1,9 @@
+{
+  "bom": {
+    "remove": [
+      {
+        "purl": "pkg:npm/scanoss"
+      }
+    ]
+  }
+}

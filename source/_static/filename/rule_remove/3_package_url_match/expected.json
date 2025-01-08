@@ -1,0 +1,15 @@
+{
+  "src/utils.cpp": [
+    {
+      "id": "file",
+      "component": "utils",
+      "matched": "100%",
+      "lines": "1-50",
+      "oss_lines": "1-50",
+      "purl": [
+        "pkg:github/test/utils"
+      ]
+    }
+  ]
+}
+}

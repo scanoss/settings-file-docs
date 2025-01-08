@@ -1,0 +1,28 @@
+{
+  "src/utils/helper.js": [
+    {
+      "id": "file",
+      "component": "lodash",
+      "matched": "100%",
+      "lines": "1-50",
+      "oss_lines": "1-50",
+      "version": "4.17.21",
+      "purl": [
+        "pkg:npm/lodash"
+      ]
+    }
+  ],
+  "src/lib/functions.js": [
+    {
+      "id": "snippet",
+      "component": "lodash",
+      "matched": "95%",
+      "lines": "10-30",
+      "oss_lines": "15-35",
+      "version": "4.17.20",
+      "purl": [
+        "pkg:npm/lodash"
+      ]
+    }
+  ]
+}
