@@ -111,11 +111,8 @@ Common Use Cases
 Technical Reference
 -----------------
 
- :doc:`Component Matcher <bom/rule_base>`
-    Defines the core matching properties (path and purl) that all operations use to identify components.
-
-
-**Available Operations**
+   :doc:`Rule Matching <bom/rule_base>`
+        Core matching system using paths and package URLs that powers all component rules.
 
    :doc:`Include <bom/rule_include>`
         Define components to include in scanning using the base matching criteria.

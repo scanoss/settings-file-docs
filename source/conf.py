@@ -20,7 +20,9 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+html_css_files = [
+    'custom.css',
+]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
@@ -31,12 +33,4 @@ html_logo = 'SCANOSSDocsLogo.jpg'
 html_static_path = ['_static']
 
 html_theme_options = {
-     #'body_max_width': 'none',
-     #'sidebarwidth': '10%',  # Make sidebar relative
-     #'documentwidth': '80%'  # Make main content relative
-
-
-
-     'body_max_width': '100px',  # or a specific value like '1200px'
-
 }
