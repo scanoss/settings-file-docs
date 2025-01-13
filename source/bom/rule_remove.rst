@@ -1,11 +1,10 @@
-===========
 Remove Rule
 ===========
 
-The remove rule allows you to filter out specific files from your scan results. Rules can be combined and are applied independently of their order in the settings file.
+It filter out specific files from your scan results.
 
-Rule Properties
-===============
+How to define it
+=================
 
 - **path:** Filter by file path (string)
 - **purl:** Filter by package URL (string)
@@ -15,6 +14,8 @@ Rule Properties
 
 -------------------
 
+Types
+========
 
 Remove by Path
 ^^^^^^^^^^^^^^
