@@ -1,5 +1,10 @@
-Common Properties
+SCANOSS Rule Matching Guide
 ~~~~~~~~~~~~~~~
+
+
+Common Properties
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 SCANOSS rules have two properties in common that determine matching behavior:
 
 .. list-table::
@@ -16,39 +21,36 @@ SCANOSS rules have two properties in common that determine matching behavior:
      - Package URL for component matching
 
 
-Path Matching
-~~~~~~~~~~~~
-The path property uses two matching modes based on the trailing slash:
+The path property uses two matching modes controlled by a single character - the trailing slash (/):
 
 .. list-table::
    :header-rows: 1
 
    * - Mode
+     - Example
      - Description
-   * - Exact
-     - Must match the complete path exactly
-   * - StartsWith
-     - Matches any path that starts with src/lib
-
+   * - Exact Match
+     - ``src/lib``
+     - | Must match the complete path exactly
+       | Will ONLY match "src/lib", nothing more or less
+   * - StartsWith Match
+     - ``src/lib/``
+     - | Matches any path that begins with "src/lib/"
+       | Can have any number of subdirectories or files after it
 
 .. note::
-   The presence of a trailing slash (/) in the path pattern automatically enables startsWith matching behavior:
+   The trailing slash (/) acts as a simple switch between the two modes:
 
-   * ``src/lib`` requires an exact match with the full path
-   * ``src/lib/`` matches any path that begins with "src/lib/"
+   * Without slash (``src/lib``):
+     - Requires exact match of the entire path
+     - Example: "src/lib/file.txt" would NOT match
+     - Example: Only "src/lib" would match
 
-   This provides a simple way to toggle between exact and prefix matching without additional configuration.
-
-.. warning::
-   Be cautious with trailing slashes as they significantly change matching behavior:
-
-   * ``test/`` will match:
-     - test/file.js
-     - test/subfolder/file.js
-     - test/anything/here.txt
-
-   * ``test`` will only match:
-     - test
+   * With slash (``src/lib/``):
+     - Matches any path that starts with the pattern
+     - Example: "src/lib/file.txt" would match
+     - Example: "src/lib/subfolder/file.txt" would match
+     - Example: "src/lib/deep/nested/file.txt" would match
 
 Examples
 ^^^^^^^^^
@@ -57,28 +59,47 @@ Examples
    :header-rows: 1
 
    * - Rule Path
+     - Match Mode
      - Input Path
      - Matches?
      - Explanation
-   * - src/file1.c
-     - src/file1.c
-     - ✅ YES
-     - Exact path match
-   * - src/file1.c
-     - src/file1.cpp
-     - ❌ NO
-     - Different extension
-   * - src/lib/
-     - src/lib/file1.c
-     - ✅ YES
-     - Path starts with src/lib/
    * - src/lib
-     - src/lib/file1.c
+     - Exact
+     - src/lib
+     - ✅ YES
+     - Exact match - paths are identical
+   * - src/lib
+     - Exact
+     - src/lib/file.txt
      - ❌ NO
-     - No trailing slash, requires exact match of "src/lib"
+     - Exact match required, but input has extra content
+   * - src/lib/
+     - StartsWith
+     - src/lib/file.txt
+     - ✅ YES
+     - Input starts with "src/lib/"
+   * - src/lib/
+     - StartsWith
+     - src/lib/subfolder/file.txt
+     - ✅ YES
+     - Input starts with "src/lib/"
+   * - src/lib/
+     - StartsWith
+     - src/libs/file.txt
+     - ❌ NO
+     - Input does not start with "src/lib/"
+   * - src/lib/
+     - StartsWith
+     - src/lib
+     - ❌ NO
+     - Input is shorter than the required prefix
 
+.. warning::
+   Common pitfalls to avoid:
 
-
+   * Not having a trailing slash when you want to match subdirectories
+   * Having a trailing slash when you only want to match one specific path
+   * Forgetting that exact matches (no slash) will reject anything longer than the pattern
 
 Purl Matching
 ~~~~~~~~~~~~~~
@@ -241,13 +262,68 @@ Examples
 .. warning::
 
    * Path matches but PURL doesn't:
+
      - The file is in the right location but wrong component
      - Results in NO MATCH
 
    * PURL matches but path doesn't:
+
      - Right component but wrong location
      - Results in NO MATCH
 
    * Both match but version wrong:
+
      - Right component and location but wrong version
      - Results in NO MATCH
+
+
+Rule Priority
+~~~~~~~~~~~~
+SCANOSS sorts all rules based on a priority system before applying them. This ensures a deterministic order of evaluation, with more specific rules being checked before general ones:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Priority Level
+     - Rule Properties
+     - Score
+     - Description
+   * - Highest
+     - PURL + Path
+     - 4
+     - Rules with both PURL and path are checked first
+   * - Medium
+     - PURL only
+     - 2
+     - Rules with only PURL are checked second
+   * - Low
+     - Path only
+     - 1
+     - Rules with only path are checked last
+   * - None
+     - No properties
+     - 0
+     - Rules with neither property are ignored
+
+
+When Rules Have Equal Priority
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If two rules have the same priority score, additional criteria are used:
+
+1. For rules with paths:
+
+   * The rule with the longer path takes precedence
+   * Example: ``src/lib/utils/`` takes precedence over ``src/lib/``
+
+2. If no other criteria distinguish the rules:
+
+   * The rules are considered equal
+   * The first matching rule will be applied
+
+.. warning::
+   Be careful when defining multiple rules that could match the same files:
+
+   * More specific rules (longer paths) take precedence over general rules
+   * Rules with both PURL and path always take precedence
+   * Rules with neither property will never be applied
+

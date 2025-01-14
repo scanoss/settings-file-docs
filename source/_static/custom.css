@@ -18,3 +18,8 @@
         padding: 1.5em !important;
     }
 }
+
+
+.single-color tr {
+    background-color: #ff0000 !important;
+}
