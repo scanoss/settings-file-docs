@@ -1,0 +1,49 @@
+{
+  "src/test/helper.cpp": [
+    {
+      "id": "file",
+      "component": "test_utils",
+      "matched": "100%",
+      "lines": "all",
+      "purl": [
+        "pkg:github/test/utils"
+      ]
+    }
+  ],
+  "src/test_main.cpp": [
+    {
+      "id": "snippet",
+      "component": "test_main",
+      "matched": "85%",
+      "lines": "10-25",
+      "oss_lines": "15-30",
+      "purl": [
+        "pkg:github/test/main"
+      ]
+    }
+  ],
+  "src/testing/mock.cpp": [
+    {
+      "id": "snippet",
+      "component": "mock_lib",
+      "matched": "79%",
+      "lines": "3-7,24-36",
+      "oss_lines": "1-5,29-41",
+      "purl": [
+        "pkg:github/mock/lib"
+      ]
+    }
+  ],
+  "src/test-config.h": [
+    {
+      "id": "none",
+      "server": {
+        "kb_version": {
+          "daily": "25.01.07",
+          "monthly": "24.12"
+        },
+        "version": "5.4.9"
+      }
+    }
+  ]
+}

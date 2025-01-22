@@ -1,0 +1,14 @@
+{
+  "sdk/include/api/grpc.h": [
+    {
+      "id": "none",
+      "server": {
+        "kb_version": {
+          "daily": "25.01.07",
+          "monthly": "24.12"
+        },
+        "version": "5.4.9"
+      }
+    }
+  ]
+}

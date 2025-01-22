@@ -1,0 +1,9 @@
+{
+  "bom": {
+    "remove": [
+      {
+        "path": "src/crc32c.c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "src/crc32c.c": [
+    {
+      "id": "snippet",
+      "component": "wfp",
+      "matched": "79%",
+      "lines": "3-7,24-36",
+      "oss_lines": "1-5,29-41",
+      "purl": [
+        "pkg:github/scanoss/wfp"
+      ]
+    }
+  ],
+  "sdk/include/api/grpc.h": [
+    {
+      "id": "none",
+      "server": {
+        "kb_version": {
+          "daily": "25.01.07",
+          "monthly": "24.12"
+        },
+        "version": "5.4.9"
+      }
+    }
+  ]
+}

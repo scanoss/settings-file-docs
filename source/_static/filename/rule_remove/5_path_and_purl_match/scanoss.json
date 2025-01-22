@@ -1,0 +1,10 @@
+{
+  "bom": {
+    "remove": [
+      {
+        "path": "src/test",
+        "purl": "pkg:npm/scanoss"
+      }
+    ]
+  }
+}

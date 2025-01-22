@@ -1,0 +1,40 @@
+{
+  "src/test/main.cpp": [
+    {
+      "id": "snippet",
+      "component": "test_main",
+      "matched": "85%",
+      "lines": "10-25",
+      "oss_lines": "15-30",
+      "purl": [
+        "pkg:npm/scanoss",
+        "pkg:github/test/main"
+      ]
+    }
+  ],
+  "src/test/utils.cpp": [
+    {
+      "id": "file",
+      "component": "utils",
+      "matched": "100%",
+      "lines": "1-50",
+      "oss_lines": "1-50",
+      "purl": [
+        "pkg:github/test/utils"
+      ]
+    }
+  ],
+  "src/lib/helper.cpp": [
+    {
+      "id": "snippet",
+      "component": "helper",
+      "matched": "90%",
+      "lines": "5-15",
+      "oss_lines": "10-20",
+      "purl": [
+        "pkg:npm/scanoss",
+        "pkg:github/test/helper"
+      ]
+    }
+  ]
+}
