@@ -1,6 +1,6 @@
-Settings File: Your Control Center
+Settings File: Your Control Centre
 ================================
-The settings file is your central configuration hub that puts you in control of how your code is scanned and analyzed. Think of it as your project's command center - one file that coordinates all aspects of your scanning process.
+The settings file is your central configuration hub that puts you in control of how your code is scanned and analyzed. Think of it as your project's command centre - one file that coordinates all aspects of your scanning process.
 
 What Can You Do With It?
 -----------------------
@@ -239,7 +239,7 @@ Technical Reference
 
 SKIP Operations
 ==============
-Tell the scanner what to skip and when - save time by scanning only what matters.
+Tell the scanner what to skip
 
 .. code-block:: json
 
@@ -258,5 +258,4 @@ Tell the scanner what to skip and when - save time by scanning only what matters
     }
   }
 
-Want more control? Check our detailed guides:
-:doc:`Skip by pattern <skip_patterns>` | :doc:`Skip by size <skip_sizes>` | :doc:`Advanced examples <skip_examples>`
+
